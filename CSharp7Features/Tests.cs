@@ -33,5 +33,12 @@ namespace Tests
             var x = 3;
             (x is 3).Should().BeTrue();
         }
+        
+        [Test]
+        public void type_pattern () {
+            var x = 3;
+            (x is int y).Should().BeTrue();
+            y.Should().Be(3);
+        }
     }
 }
