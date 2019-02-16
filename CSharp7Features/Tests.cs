@@ -1,13 +1,14 @@
-using System.Runtime.InteropServices.ComTypes;
+using FluentAssertions;
 using NUnit.Framework;
 
-namespace Tests {
+namespace Tests
+{
     public class Tests {
         [Test]
         public void out_parameters_one_line_definition() {
             GetCoordinates(out var x, out var y);
-            Assert.AreEqual(x, 3);
-            Assert.AreEqual(y, 2);
+            x.Should().Equals(3);
+            y.Should().Equals(2);
         }
 
         private void GetCoordinates(out int x, out int y) {
