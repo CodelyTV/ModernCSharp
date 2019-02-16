@@ -38,7 +38,7 @@ namespace Tests
         public void type_pattern () {
             var x = 3;
             (x is int y).Should().BeTrue();
-            y.Should().Be(3);
+            y.Should().Be(x);
         }
     }
 }
