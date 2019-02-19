@@ -38,6 +38,13 @@ namespace Tests
         public void type_pattern () {
             var x = 3;
             (x is int y).Should().BeTrue();
+            y.Should().Be(x); // note that y is visible here
+        }
+
+        [Test]
+        public void var_pattern () {
+            var x = 3;
+            (x is var y).Should().BeTrue(); 
             y.Should().Be(x);
         }
     }
