@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -58,15 +59,19 @@ namespace Tests
                 switch (shape) { // case patterns
                     case Circle c: 
                         return $"circle with radius: {c.Radius}"; // string interpolation
-                    case Rectangle s when (s.Width == s.Height): 
+                    case Rectangle s when (s.Width == s.Height):  // order matterns
                         return $"square with size: {s.Width}";
                     case Rectangle r: 
                         return $"rectangle with sizes: {r.Width} x {r.Height}";
+                    case null:
+                        throw new ArgumentNullException();
                     default:
                         return string.Empty;
                 }    
             }
-            
+
+            Func<string> nullCase = () => ToString((Circle) null);
+            nullCase.Should().Throw<ArgumentNullException>();            
             ToString(rectangle).Should().Be("rectangle with sizes: 2 x 4");
             ToString(square).Should().Be("square with size: 2");
             ToString(circle).Should().Be("circle with radius: 2");
